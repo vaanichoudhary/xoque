@@ -50,11 +50,18 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  return (
+   return (
     <html lang="en">
-      <body>
+      {/*
+        CRITICAL CHECKS:
+        1. <body> must NOT have bg-black or bg-[#0d0d1a] — 
+           that dark color bleeds through the transparent navbar area
+        2. Remove any className with "bg-" from <body> if the hero is the first section
+        3. The hero section itself provides the background color
+      */}
+      <body className="antialiased">
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -18,11 +18,11 @@ export default function Hook() {
   return (
     <section
       ref={ref}
-      className="w-full px-5 py-24 sm:py-32 flex flex-col items-center justify-center text-center"
+      className="w-full px-5 py-15 sm:py-15 flex flex-col items-center justify-center text-center"
       style={{ backgroundColor: "#f0efeb" }}
     >
       {/* Thin rule above */}
-      <div className="w-12 h-px bg-[#6366f1]/30 mb-10" />
+      <div className="w-12 mb-10" />
 
       {/* Main headline */}
       <h2
@@ -46,7 +46,7 @@ export default function Hook() {
 
       {/* Subtext */}
       <p
-        className={`mt-6 text-[15px] sm:text-base text-[#4b4b6a]/70 font-medium tracking-wide transition-all duration-700 delay-200 ease-out ${
+        className={`mt-6 text-[22px] sm:text-base text-[#4b4b6a]/70 font-medium tracking-wide transition-all duration-700 delay-200 ease-out ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
         }`}
         style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -55,7 +55,7 @@ export default function Hook() {
       </p>
 
       {/* Thin rule below */}
-      <div className="w-12 h-px bg-[#6366f1]/30 mt-10" />
+      <div className="w-12  mt-10" />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Sans:wght@400;500&display=swap');
