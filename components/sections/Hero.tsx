@@ -577,275 +577,683 @@
 
 
 
+// "use client";
+
+// import { useEffect, useState } from "react";
+
+// const NUMS  = ["01","02","03","04","05"];
+// // Lowercase — matches the brand logo style
+// const CHARS = ["x","o","q","u","e"];
+
+// function GLetter({ char, visible, isE, tiltE }: {
+//   char: string; visible: boolean; isE: boolean; tiltE: boolean;
+// }) {
+//   return (
+//     <span
+//       className="block leading-none font-black select-none"
+//       style={{
+//         fontFamily: "var(--font-display)",
+//         fontSize: "clamp(4.5rem, 18.5vw, 14rem)",
+//         letterSpacing: "-0.045em",
+//         color: "#ffffff",
+//         // Phase 1: all letters pop in together (scale up from 0.78)
+//         opacity: visible ? 1 : 0,
+//         transform: visible
+//           ? isE && tiltE
+//             // Phase 2: E springs to 9deg with overshoot — Disney bounce
+//             ? "scale(1) rotate(9deg) translateY(6px)"
+//             : "scale(1) rotate(0deg)"
+//           : "scale(0.78) translateY(16px)",
+//         transformOrigin: isE ? "bottom center" : "center bottom",
+//         transition: isE
+//           ? tiltE
+//             // Spring overshoot curve — goes slightly past 9deg, bounces back
+//             ? "opacity 0.5s ease, transform 0.65s cubic-bezier(0.34,1.55,0.64,1)"
+//             // First appear upright with bounce
+//             : "opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.4,0.64,1)"
+//           : "opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1)",
+//         textShadow: "0 2px 8px rgba(0,0,0,0.3)",
+//       }}
+//     >
+//       {char}
+//     </span>
+//   );
+// }
+
+// export default function Hero() {
+//   // Phase 1 — all letters appear at once
+//   const [visible,  setVisible]  = useState(false);
+//   // Phase 2 — E tilts right after a beat (Disney-style)
+//   const [tiltE,    setTiltE]    = useState(false);
+//   const [numsIn,   setNumsIn]   = useState(false);
+//   const [subIn,    setSubIn]    = useState(false);
+//   const [drawLine, setDrawLine] = useState(false);
+//   const [btnsIn,   setBtnsIn]   = useState(false);
+
+//   useEffect(() => {
+//     const t: ReturnType<typeof setTimeout>[] = [];
+//     // All letters appear at once
+//     t.push(setTimeout(() => setVisible(true),  350));
+//     // Numbers fade in just after letters land
+//     t.push(setTimeout(() => setNumsIn(true),   650));
+//     // E tilts playfully — after a beat so it feels like a character moment
+//     t.push(setTimeout(() => setTiltE(true),    850));
+//     // Tagline slides up
+//     t.push(setTimeout(() => setSubIn(true),   1000));
+//     // Doodle lines draw in
+//     t.push(setTimeout(() => setDrawLine(true),1150));
+//     // Buttons appear
+//     t.push(setTimeout(() => setBtnsIn(true),  1300));
+//     return () => t.forEach(clearTimeout);
+//   }, []);
+
+//   return (
+//     <section
+//       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-20 pb-20"
+//       style={{
+//         background: "linear-gradient(160deg, #1e0a3c 0%, #2d1260 30%, #3b0764 60%, #4c1d95 85%, #5b21b6 100%)",
+//       }}
+//     >
+//       {/* Background layers */}
+//       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+//         <div className="absolute top-0 left-0 right-0 h-48"
+//           style={{ background: "linear-gradient(to bottom, rgba(10,0,30,0.55), transparent)" }} />
+//         <div className="absolute bottom-0 left-0 right-0 h-40"
+//           style={{ background: "linear-gradient(to bottom, transparent 0%, #3b0764 60%, #2d1260 100%)" }} />
+//         <div
+//           className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[380px] rounded-full"
+//           style={{ background: "radial-gradient(ellipse, rgba(109,40,217,0.4) 0%, rgba(91,33,182,0.12) 50%, transparent 70%)" }}
+//         />
+//         <div
+//           className="absolute inset-0 opacity-[0.04]"
+//           style={{
+//             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+//             backgroundSize: "160px",
+//           }}
+//         />
+//       </div>
+
+//       {/* Badge */}
+//       <div
+//         className={`relative z-10 mb-6 sm:mb-8 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}
+//       >
+//         <span
+//           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.06] text-[10px] sm:text-[11px] font-medium text-white/50 tracking-[0.14em] uppercase"
+//           style={{ fontFamily: "var(--font-mono)" }}
+//         >
+//           <span
+//             className="w-1.5 h-1.5 rounded-full bg-[#4ade80] flex-shrink-0"
+//             style={{ boxShadow: "0 0 6px rgba(74,222,128,0.9)", animation: "pulse-dot 2s ease-in-out infinite" }}
+//           />
+//           Real content · No AI · No filters
+//         </span>
+//       </div>
+
+//       {/* xoque letters */}
+//       <div className="relative z-10 w-full max-w-5xl mx-auto mb-4 sm:mb-6">
+//         <div className="flex items-end justify-between px-0 sm:px-1">
+//           {CHARS.map((char, i) => {
+//             // FIX: check against lowercase "e" since CHARS is lowercase
+//             const isE = char === "e";
+//             return (
+//               <div key={`${char}-${i}`} className="relative flex-1 flex flex-col items-center">
+
+//                 {/* Number superscript — alternating top/bottom per reference image */}
+//                 <span
+//                   className="absolute text-md font-semibold select-none"
+//                   style={{
+//                     fontFamily: "var(--font-display)",
+//                     fontSize: "clamp(0.4rem, 1.1vw, 0.72rem)",
+//                     color: "rgba(196,181,253,0.38)",
+//                     letterSpacing: "0.02em",
+//                     top:    i % 2 === 0 ? "50px"  : "auto",
+//                     bottom: i % 2 !== 0 ? "15px" : "auto",
+//                     right:  (i === 0 || i === 4) ? "15px" : "auto",
+//                     left:   (i === 1 || i === 3) ? "30px" : "auto",
+//                     ...(i === 2 && { left: "50%", transform: "translateX(-80%)", top: "2px" }),
+//                     opacity: numsIn ? 1 : 0,
+//                     transition: "opacity 0.4s ease",
+//                     transitionDelay: `${i * 55}ms`,
+//                   }}
+//                 >
+//                   {NUMS[i]}
+//                 </span>
+
+//                 <GLetter
+//                   char={char}
+//                   visible={visible}
+//                   isE={isE}
+//                   tiltE={tiltE}
+//                 />
+//               </div>
+//             );
+//           })}
+//         </div>
+
+//         {/* Thin separator line */}
+//         <div
+//           className="mt-2 mx-1 h-px"
+//           style={{
+//             background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.4), rgba(167,139,250,0.25), transparent)",
+//             opacity: numsIn ? 1 : 0,
+//             transition: "opacity 0.6s ease 0.3s",
+//           }}
+//         />
+//       </div>
+
+//       {/* Tagline */}
+//       <div
+//         className={`relative z-10 flex flex-col items-center gap-0.5 mb-8 sm:mb-10 transition-all duration-600 ${subIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+//       >
+//         {/* Handwriting "friends" floating above */}
+//         <span
+//           style={{
+//             fontFamily: "'Caveat', cursive",
+//             fontWeight: 600,
+//             fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
+//             color: "#67e8f9",
+//             display: "inline-block",
+//             transform: "rotate(-2.5deg) translateX(-10px)",
+//             textShadow: "0 0 16px rgba(103,232,249,0.35)",
+//             marginBottom: "2px",
+//           }}
+//         >
+//           friends
+//         </span>
+
+//         {/* Main tagline */}
+//         <p
+//           className="text-white/85 font-semibold tracking-tight text-center"
+//           style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2.8vw, 1.45rem)" }}
+//         >
+//           It's Your{" "}
+//           {/* Only "Social" gets the doodle strikethrough */}
+//           <span className="relative inline-block">
+//             <span className="text-white/30">Social</span>
+//             <svg
+//               aria-hidden
+//               className="absolute pointer-events-none"
+//               style={{ left: "-2px", top: "50%", transform: "translateY(-50%)", width: "calc(100% + 4px)", height: "20px", overflow: "visible" }}
+//               viewBox="0 0 90 20" fill="none"
+//             >
+//               <path
+//                 d="M2 12 C18 8,38 14,55 9 C68 5,80 11,88 7"
+//                 stroke="#5eead4" strokeWidth="2.2" strokeLinecap="round"
+//                 style={{ strokeDasharray: 110, strokeDashoffset: drawLine ? 0 : 110, transition: "stroke-dashoffset 0.45s cubic-bezier(0.16,1,0.3,1)" }}
+//               />
+//               <path
+//                 d="M3 7 C20 12,42 4,58 9 C70 13,82 6,88 11"
+//                 stroke="#5eead4" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"
+//                 style={{ strokeDasharray: 105, strokeDashoffset: drawLine ? 0 : 105, transition: "stroke-dashoffset 0.45s cubic-bezier(0.16,1,0.3,1) 0.07s" }}
+//               />
+//             </svg>
+//           </span>
+//           {" "}Media App
+//         </p>
+
+//         {/* Mono subline */}
+//         <p
+//           className="text-white/25 tracking-widest mt-1.5"
+//           style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(0.6rem, 1.3vw, 0.75rem)" }}
+//         >
+//           imperfect but real.
+//         </p>
+//       </div>
+
+//       {/* CTA Buttons */}
+//       <div
+//         className={`relative z-10 flex flex-col sm:flex-row items-center gap-3 w-full max-w-xs sm:max-w-none sm:w-auto transition-all duration-500 ${btnsIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+//       >
+//         <a
+//           href="#ios"
+//           className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-[14px] text-[#3b0764] bg-white overflow-hidden active:scale-95 transition-all duration-200"
+//           style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em", boxShadow: "0 4px 24px rgba(0,0,0,0.3)" }}
+//         >
+//           <span className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-500 bg-gradient-to-r from-transparent via-violet-100/60 to-transparent skew-x-12 pointer-events-none" />
+//           <AppleIcon />
+//           Download for iOS
+//         </a>
+
+//         <a
+//           href="#android"
+//           className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-[14px] text-white overflow-hidden active:scale-95 transition-all duration-200"
+//           style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em", background: "rgba(255,255,255,0.09)", backdropFilter: "blur(8px)", boxShadow: "0 0 0 1px rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.2)" }}
+//         >
+//           <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+//             style={{ background: "rgba(255,255,255,0.05)", boxShadow: "0 0 0 1px rgba(255,255,255,0.3)" }} />
+//           <AndroidIcon />
+//           Download for Android
+//         </a>
+//       </div>
+
+//       {/* Social proof */}
+//       <div
+//         className={`relative z-10 mt-7 flex items-center gap-3 transition-all duration-500 delay-100 ${btnsIn ? "opacity-100" : "opacity-0"}`}
+//       >
+//         <div className="flex -space-x-2">
+//           {["#22d3ee","#a78bfa","#ec4899","#f0c040"].map((c, i) => (
+//             <div key={i} className="w-6 h-6 rounded-full border-2 border-[#2d1260]" style={{ backgroundColor: c }} />
+//           ))}
+//         </div>
+//         <p className="text-[11px] text-white/25" style={{ fontFamily: "var(--font-body)" }}>
+//           <span className="text-white/50 font-semibold">12,000+</span> real people already in
+//         </p>
+//       </div>
+
+//       <style>{`
+//         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+//         @keyframes pulse-dot {
+//           0%,100% { opacity: 1; }
+//           50%      { opacity: 0.3; }
+//         }
+//       `}</style>
+//     </section>
+//   );
+// }
+
+// function AppleIcon() {
+//   return (
+//     <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+//     </svg>
+//   );
+// }
+// function AndroidIcon() {
+//   return (
+//     <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M6.18 15.64a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zm11.64 0a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zM5.5 7.5v9.5A1.5 1.5 0 0 0 7 18.5h.5V21a1.5 1.5 0 0 0 3 0v-2.5h3V21a1.5 1.5 0 0 0 3 0v-2.5H17a1.5 1.5 0 0 0 1.5-1.5V7.5h-13zm1.56-4.18 1.2-2.08a.28.28 0 0 1 .48.28l-1.2 2.08a5.44 5.44 0 0 1 4.92 0L11.24 1.6a.28.28 0 0 1 .48-.28l1.2 2.08A5.5 5.5 0 0 1 5.5 6H18.5a5.5 5.5 0 0 0-11.44-2.68z"/>
+//     </svg>
+//   );
+// }
+
+
 "use client";
 
 import { useEffect, useState } from "react";
 
-const NUMS  = ["01","02","03","04","05"];
-// Lowercase — matches the brand logo style
-const CHARS = ["x","o","q","u","e"];
+/*
+  PIXEL-PERFECT background from reference image (1392×782, 16:9):
 
-function GLetter({ char, visible, isE, tiltE }: {
-  char: string; visible: boolean; isE: boolean; tiltE: boolean;
-}) {
+  CIRCLE:
+    Center: 65% × 1392 = 905x,  40% × 782 = 313y
+    Radius (stroke center): ~185px
+    Stroke width: ~50px
+    Gradient: purple (top-left) → hot pink (bottom-right)
+
+  ALL THREE LINES share one junction point: ~(585, 587)  [42%x, 75%y]
+
+  LINE 1 – upper-left diagonal:
+    Exits top edge at ~13% from left → (181, 0)
+    Goes DOWN-RIGHT to junction (585, 587)
+    Gradient: bright cyan at top → purple at junction
+
+  LINE 2 – left side, nearly horizontal:
+    Exits left edge at ~58% down → (0, 454)
+    Goes RIGHT and SLIGHTLY DOWN to junction (585, 587)
+    Gradient: bright cyan at left → purple at junction
+
+  LINE 3 – base going to bottom-right:
+    From junction (585, 587) → exits bottom-right corner (1392, 782)
+    Gradient: purple at junction → hot pink at far right
+*/
+function XoqueLogo() {
   return (
-    <span
-      className="block leading-none font-black select-none"
-      style={{
-        fontFamily: "var(--font-display)",
-        fontSize: "clamp(4.5rem, 18.5vw, 14rem)",
-        letterSpacing: "-0.045em",
-        color: "#ffffff",
-        // Phase 1: all letters pop in together (scale up from 0.78)
-        opacity: visible ? 1 : 0,
-        transform: visible
-          ? isE && tiltE
-            // Phase 2: E springs to 9deg with overshoot — Disney bounce
-            ? "scale(1) rotate(9deg) translateY(6px)"
-            : "scale(1) rotate(0deg)"
-          : "scale(0.78) translateY(16px)",
-        transformOrigin: isE ? "bottom center" : "center bottom",
-        transition: isE
-          ? tiltE
-            // Spring overshoot curve — goes slightly past 9deg, bounces back
-            ? "opacity 0.5s ease, transform 0.65s cubic-bezier(0.34,1.55,0.64,1)"
-            // First appear upright with bounce
-            : "opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.4,0.64,1)"
-          : "opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1)",
-        textShadow: "0 2px 8px rgba(0,0,0,0.3)",
-      }}
+    <svg
+      className="absolute inset-0 w-full h-full"
+      viewBox="0 0 1392 782"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden
     >
-      {char}
-    </span>
+      <defs>
+        <linearGradient id="l1" x1="181" y1="0" x2="585" y2="587" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stopColor="#00e5ff" />
+          <stop offset="100%" stopColor="#7020e8" />
+        </linearGradient>
+
+        <linearGradient id="l2" x1="0" y1="454" x2="585" y2="587" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stopColor="#00d4ff" />
+          <stop offset="100%" stopColor="#7020e8" />
+        </linearGradient>
+
+        <linearGradient id="l3" x1="585" y1="587" x2="1392" y2="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stopColor="#7020e8" />
+          <stop offset="45%"  stopColor="#cc18cc" />
+          <stop offset="100%" stopColor="#ff08b0" />
+        </linearGradient>
+
+        <linearGradient id="ring" x1="650" y1="80" x2="1070" y2="520" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stopColor="#7020e8" />
+          <stop offset="45%"  stopColor="#b818d8" />
+          <stop offset="100%" stopColor="#ff08b0" />
+        </linearGradient>
+      </defs>
+
+      {/* O ring */}
+      <circle cx="905" cy="313" r="185" stroke="url(#ring)" strokeWidth="50" fill="none" />
+
+      {/* Line 1: upper-left diagonal → junction */}
+     {/* Line 1: upper-left diagonal → junction — THINNER than others */}
+<line x1="181" y1="-10"  x2="585" y2="900" stroke="url(#l1)" strokeWidth="28" strokeLinecap="round" />
+
+{/* Line 2: left edge near-horizontal → junction */}
+<line x1="-5"  y1="454" x2="585" y2="587" stroke="url(#l2)" strokeWidth="52" strokeLinecap="round" />
+
+{/* Line 3: junction → bottom-right (extended well past bottom edge) */}
+<line x1="585" y1="587" x2="1600" y2="850" stroke="url(#l3)" strokeWidth="52" strokeLinecap="round" />
+    </svg>
   );
 }
 
+/* ─── Types ─── */
+interface NumPlace { side: "above" | "below"; h: "left" | "right" | "center" }
+
+const CHARS: string[]    = ["x", "o", "q", "u", "e"];
+const NUMS: string[]     = ["01", "02", "03", "04", "05"];
+const NUM_PLACE: NumPlace[] = [
+  { side: "above", h: "right"  },
+  { side: "below", h: "left"   },
+  { side: "above", h: "center" },
+  { side: "below", h: "left"   },
+  { side: "above", h: "right"  },
+];
+
+const AVATARS = [
+  "https://i.pravatar.cc/48?img=47",
+  "https://i.pravatar.cc/48?img=32",
+  "https://i.pravatar.cc/48?img=12",
+  "https://i.pravatar.cc/48?img=58",
+];
+
+/* ─── Letter component ─── */
+interface LetterProps {
+  char: string; num: string; place: NumPlace;
+  visible: boolean; tiltE: boolean; delay: number;
+}
+
+function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
+  const isE = char === "e";
+
+  const numStyle: React.CSSProperties = {
+    position: "absolute",
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: "clamp(0.58rem, 1.3vw, 0.95rem)",
+    fontWeight: 600,
+    color: "rgba(210,196,175,0.52)",
+    letterSpacing: "0.05em",
+    lineHeight: 1,
+    pointerEvents: "none",
+    userSelect: "none",
+    // vertical — sit right over the letter
+    ...(place.side === "above" ? { bottom: "84%" } : { top: "84%" }),
+    // horizontal
+    ...(place.h === "right"
+      ? { right: "5px" }
+      : place.h === "left"
+      ? { left: "5px" }
+      : { left: "50%", transform: "translateX(-50%)" }),
+  };
+
+  return (
+    <div className="relative flex-1 flex flex-col items-center">
+      <span style={numStyle}>{num}</span>
+      <span
+        className="block leading-none font-bold select-none"
+        style={{
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: "clamp(3.8rem, 17vw, 13.5rem)",
+          letterSpacing: "-0.03em",
+          fontWeight: 700,
+          color: "#ffffff",
+          textShadow: "0 2px 32px rgba(0,0,0,0.55)",
+          opacity: visible ? 1 : 0,
+          transform: visible
+            ? isE && tiltE ? "scale(1) rotate(13deg) translateY(8px)" : "scale(1)"
+            : "scale(0.82) translateY(18px)",
+          transformOrigin: isE ? "bottom center" : "center bottom",
+          transition:
+            isE && tiltE
+              ? `opacity 0.5s ease ${delay}ms, transform 0.7s cubic-bezier(0.34,1.55,0.64,1) ${delay}ms`
+              : `opacity 0.55s ease ${delay}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        }}
+      >
+        {char}
+      </span>
+    </div>
+  );
+}
+
+/* ─── Hero ─── */
 export default function Hero() {
-  // Phase 1 — all letters appear at once
-  const [visible,  setVisible]  = useState(false);
-  // Phase 2 — E tilts right after a beat (Disney-style)
-  const [tiltE,    setTiltE]    = useState(false);
-  const [numsIn,   setNumsIn]   = useState(false);
-  const [subIn,    setSubIn]    = useState(false);
-  const [drawLine, setDrawLine] = useState(false);
-  const [btnsIn,   setBtnsIn]   = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [tiltE,   setTiltE]   = useState(false);
+  const [numsIn,  setNumsIn]  = useState(false);
+  const [subIn,   setSubIn]   = useState(false);
+  const [btnsIn,  setBtnsIn]  = useState(false);
 
   useEffect(() => {
     const t: ReturnType<typeof setTimeout>[] = [];
-    // All letters appear at once
-    t.push(setTimeout(() => setVisible(true),  350));
-    // Numbers fade in just after letters land
-    t.push(setTimeout(() => setNumsIn(true),   650));
-    // E tilts playfully — after a beat so it feels like a character moment
-    t.push(setTimeout(() => setTiltE(true),    850));
-    // Tagline slides up
-    t.push(setTimeout(() => setSubIn(true),   1000));
-    // Doodle lines draw in
-    t.push(setTimeout(() => setDrawLine(true),1150));
-    // Buttons appear
-    t.push(setTimeout(() => setBtnsIn(true),  1300));
+    t.push(setTimeout(() => setVisible(true),  280));
+    t.push(setTimeout(() => setNumsIn(true),   550));
+    t.push(setTimeout(() => setTiltE(true),    820));
+    t.push(setTimeout(() => setSubIn(true),   1050));
+    t.push(setTimeout(() => setBtnsIn(true),  1250));
     return () => t.forEach(clearTimeout);
   }, []);
 
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-20 pb-20"
-      style={{
-        background: "linear-gradient(160deg, #1e0a3c 0%, #2d1260 30%, #3b0764 60%, #4c1d95 85%, #5b21b6 100%)",
-      }}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      style={{ background: "#000000", padding: "80px 16px 48px" }}
     >
-      {/* Background layers */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-48"
-          style={{ background: "linear-gradient(to bottom, rgba(10,0,30,0.55), transparent)" }} />
-        <div className="absolute bottom-0 left-0 right-0 h-40"
-          style={{ background: "linear-gradient(to bottom, transparent 0%, #3b0764 60%, #2d1260 100%)" }} />
-        <div
-          className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[380px] rounded-full"
-          style={{ background: "radial-gradient(ellipse, rgba(109,40,217,0.4) 0%, rgba(91,33,182,0.12) 50%, transparent 70%)" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: "160px",
-          }}
-        />
-      </div>
+      {/* Background logo – pixel-perfect */}
+      <XoqueLogo />
 
-      {/* Badge */}
+      {/* Subtle center vignette */}
       <div
-        className={`relative z-10 mb-6 sm:mb-8 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 55% at 50% 48%, transparent 0%, rgba(0,0,0,0.28) 100%)",
+        }}
+      />
+
+      {/* ── Word mark ── */}
+      <div
+        className="relative z-10 w-full"
+        style={{
+          maxWidth: "min(960px, 95vw)",
+          marginBottom: "clamp(4px, 1.2vw, 12px)",
+        }}
       >
-        <span
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.06] text-[10px] sm:text-[11px] font-medium text-white/50 tracking-[0.14em] uppercase"
-          style={{ fontFamily: "var(--font-mono)" }}
+        <div
+          className="flex items-end justify-between"
+          style={{ opacity: numsIn ? 1 : 0, transition: "opacity 0.5s ease 0.15s" }}
         >
-          <span
-            className="w-1.5 h-1.5 rounded-full bg-[#4ade80] flex-shrink-0"
-            style={{ boxShadow: "0 0 6px rgba(74,222,128,0.9)", animation: "pulse-dot 2s ease-in-out infinite" }}
-          />
-          Real content · No AI · No filters
-        </span>
-      </div>
-
-      {/* xoque letters */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto mb-4 sm:mb-6">
-        <div className="flex items-end justify-between px-0 sm:px-1">
-          {CHARS.map((char, i) => {
-            // FIX: check against lowercase "e" since CHARS is lowercase
-            const isE = char === "e";
-            return (
-              <div key={`${char}-${i}`} className="relative flex-1 flex flex-col items-center">
-
-                {/* Number superscript — alternating top/bottom per reference image */}
-                <span
-                  className="absolute text-md font-semibold select-none"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(0.4rem, 1.1vw, 0.72rem)",
-                    color: "rgba(196,181,253,0.38)",
-                    letterSpacing: "0.02em",
-                    top:    i % 2 === 0 ? "50px"  : "auto",
-                    bottom: i % 2 !== 0 ? "15px" : "auto",
-                    right:  (i === 0 || i === 4) ? "15px" : "auto",
-                    left:   (i === 1 || i === 3) ? "30px" : "auto",
-                    ...(i === 2 && { left: "50%", transform: "translateX(-80%)", top: "2px" }),
-                    opacity: numsIn ? 1 : 0,
-                    transition: "opacity 0.4s ease",
-                    transitionDelay: `${i * 55}ms`,
-                  }}
-                >
-                  {NUMS[i]}
-                </span>
-
-                <GLetter
-                  char={char}
-                  visible={visible}
-                  isE={isE}
-                  tiltE={tiltE}
-                />
-              </div>
-            );
-          })}
+          {CHARS.map((char, i) => (
+            <Letter
+              key={char}
+              char={char}
+              num={NUMS[i]}
+              place={NUM_PLACE[i]}
+              visible={visible}
+              tiltE={tiltE}
+              delay={i * 55}
+            />
+          ))}
         </div>
 
-        {/* Thin separator line */}
+        {/* separator */}
         <div
-          className="mt-2 mx-1 h-px"
           style={{
-            background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.4), rgba(167,139,250,0.25), transparent)",
+            height: "1px",
+            marginTop: "4px",
+            background:
+              "linear-gradient(90deg,transparent,rgba(130,80,240,0.5),rgba(0,212,255,0.3),transparent)",
             opacity: numsIn ? 1 : 0,
-            transition: "opacity 0.6s ease 0.3s",
+            transition: "opacity 0.6s ease 0.35s",
           }}
         />
       </div>
 
-      {/* Tagline */}
+      {/* ── Tagline – sits below separator with breathing room ── */}
       <div
-        className={`relative z-10 flex flex-col items-center gap-0.5 mb-8 sm:mb-10 transition-all duration-600 ${subIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className="relative z-10"
+        style={{
+          marginTop: "clamp(20px, 3.5vw, 44px)",
+          marginBottom: "clamp(28px, 4.5vw, 52px)",
+          opacity: subIn ? 1 : 0,
+          transform: subIn ? "translateY(0)" : "translateY(14px)",
+          transition: "opacity 0.55s ease, transform 0.55s ease",
+        }}
       >
-        {/* Handwriting "friends" floating above */}
-        <span
+        <p
           style={{
-            fontFamily: "'Caveat', cursive",
-            fontWeight: 600,
-            fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
-            color: "#67e8f9",
-            display: "inline-block",
-            transform: "rotate(-2.5deg) translateX(-10px)",
-            textShadow: "0 0 16px rgba(103,232,249,0.35)",
-            marginBottom: "2px",
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "clamp(0.8rem, 2vw, 1.3rem)",
+            fontWeight: 300,
+            letterSpacing: "0.24em",
+            color: "rgba(255,255,255,0.7)",
+            textAlign: "center",
+            margin: 0,
           }}
-        >
-          friends
-        </span>
-
-        {/* Main tagline */}
-        <p
-          className="text-white/85 font-semibold tracking-tight text-center"
-          style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2.8vw, 1.45rem)" }}
-        >
-          It's Your{" "}
-          {/* Only "Social" gets the doodle strikethrough */}
-          <span className="relative inline-block">
-            <span className="text-white/30">Social</span>
-            <svg
-              aria-hidden
-              className="absolute pointer-events-none"
-              style={{ left: "-2px", top: "50%", transform: "translateY(-50%)", width: "calc(100% + 4px)", height: "20px", overflow: "visible" }}
-              viewBox="0 0 90 20" fill="none"
-            >
-              <path
-                d="M2 12 C18 8,38 14,55 9 C68 5,80 11,88 7"
-                stroke="#5eead4" strokeWidth="2.2" strokeLinecap="round"
-                style={{ strokeDasharray: 110, strokeDashoffset: drawLine ? 0 : 110, transition: "stroke-dashoffset 0.45s cubic-bezier(0.16,1,0.3,1)" }}
-              />
-              <path
-                d="M3 7 C20 12,42 4,58 9 C70 13,82 6,88 11"
-                stroke="#5eead4" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"
-                style={{ strokeDasharray: 105, strokeDashoffset: drawLine ? 0 : 105, transition: "stroke-dashoffset 0.45s cubic-bezier(0.16,1,0.3,1) 0.07s" }}
-              />
-            </svg>
-          </span>
-          {" "}Media App
-        </p>
-
-        {/* Mono subline */}
-        <p
-          className="text-white/25 tracking-widest mt-1.5"
-          style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(0.6rem, 1.3vw, 0.75rem)" }}
         >
           imperfect but real.
         </p>
       </div>
 
-      {/* CTA Buttons */}
+      {/* ── CTA Buttons ── */}
       <div
-        className={`relative z-10 flex flex-col sm:flex-row items-center gap-3 w-full max-w-xs sm:max-w-none sm:w-auto transition-all duration-500 ${btnsIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center"
+        style={{
+          gap: "12px",
+          width: "100%",
+          maxWidth: "420px",
+          opacity: btnsIn ? 1 : 0,
+          transform: btnsIn ? "translateY(0)" : "translateY(12px)",
+          transition: "opacity 0.5s ease, transform 0.5s ease",
+        }}
       >
+        {/* iOS */}
         <a
           href="#ios"
-          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-[14px] text-[#3b0764] bg-white overflow-hidden active:scale-95 transition-all duration-200"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em", boxShadow: "0 4px 24px rgba(0,0,0,0.3)" }}
+          style={{
+            flex: 1,
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "9px",
+            padding: "15px 24px",
+            borderRadius: "999px",
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "#0a0a14",
+            background: "#ffffff",
+            boxShadow: "0 4px 28px rgba(0,0,0,0.6)",
+            textDecoration: "none",
+            cursor: "pointer",
+            transition: "transform 0.18s, box-shadow 0.18s",
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 36px rgba(0,0,0,0.7)";
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 28px rgba(0,0,0,0.6)";
+          }}
         >
-          <span className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-500 bg-gradient-to-r from-transparent via-violet-100/60 to-transparent skew-x-12 pointer-events-none" />
           <AppleIcon />
           Download for iOS
         </a>
 
+        {/* Android */}
         <a
           href="#android"
-          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-[14px] text-white overflow-hidden active:scale-95 transition-all duration-200"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em", background: "rgba(255,255,255,0.09)", backdropFilter: "blur(8px)", boxShadow: "0 0 0 1px rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.2)" }}
+          style={{
+            flex: 1,
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "9px",
+            padding: "15px 24px",
+            borderRadius: "999px",
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "#ffffff",
+            background: "rgba(255,255,255,0.10)",
+            border: "1.5px solid rgba(255,255,255,0.24)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            textDecoration: "none",
+            cursor: "pointer",
+            transition: "transform 0.18s, border-color 0.18s",
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.45)";
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.24)";
+          }}
         >
-          <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-            style={{ background: "rgba(255,255,255,0.05)", boxShadow: "0 0 0 1px rgba(255,255,255,0.3)" }} />
           <AndroidIcon />
           Download for Android
         </a>
       </div>
 
-      {/* Social proof */}
+      {/* ── Social proof ── */}
       <div
-        className={`relative z-10 mt-7 flex items-center gap-3 transition-all duration-500 delay-100 ${btnsIn ? "opacity-100" : "opacity-0"}`}
+        className="relative z-10 flex items-center"
+        style={{
+          gap: "10px",
+          marginTop: "22px",
+          opacity: btnsIn ? 1 : 0,
+          transition: "opacity 0.5s ease 0.2s",
+        }}
       >
-        <div className="flex -space-x-2">
-          {["#22d3ee","#a78bfa","#ec4899","#f0c040"].map((c, i) => (
-            <div key={i} className="w-6 h-6 rounded-full border-2 border-[#2d1260]" style={{ backgroundColor: c }} />
+        <div style={{ display: "flex" }}>
+          {AVATARS.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              width={28}
+              height={28}
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: "50%",
+                border: "2px solid #000",
+                objectFit: "cover",
+                marginLeft: i === 0 ? 0 : -8,
+                position: "relative",
+                zIndex: AVATARS.length - i,
+              }}
+            />
           ))}
         </div>
-        <p className="text-[11px] text-white/25" style={{ fontFamily: "var(--font-body)" }}>
-          <span className="text-white/50 font-semibold">12,000+</span> real people already in
+        <p
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.3)",
+            margin: 0,
+          }}
+        >
+          <span style={{ color: "rgba(255,255,255,0.58)", fontWeight: 600 }}>12,000+</span>{" "}
+          real people already in
         </p>
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
-        @keyframes pulse-dot {
-          0%,100% { opacity: 1; }
-          50%      { opacity: 0.3; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        @media (max-width:480px){section{padding-top:64px!important}}
       `}</style>
     </section>
   );
@@ -853,15 +1261,16 @@ export default function Hero() {
 
 function AppleIcon() {
   return (
-    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
     </svg>
   );
 }
+
 function AndroidIcon() {
   return (
-    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6.18 15.64a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zm11.64 0a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zM5.5 7.5v9.5A1.5 1.5 0 0 0 7 18.5h.5V21a1.5 1.5 0 0 0 3 0v-2.5h3V21a1.5 1.5 0 0 0 3 0v-2.5H17a1.5 1.5 0 0 0 1.5-1.5V7.5h-13zm1.56-4.18 1.2-2.08a.28.28 0 0 1 .48.28l-1.2 2.08a5.44 5.44 0 0 1 4.92 0L11.24 1.6a.28.28 0 0 1 .48-.28l1.2 2.08A5.5 5.5 0 0 1 5.5 6H18.5a5.5 5.5 0 0 0-11.44-2.68z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+      <path d="M6.18 15.64a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zm11.64 0a2.18 2.18 0 0 1-2.18-2.18V9.54a2.18 2.18 0 1 1 4.36 0v3.92a2.18 2.18 0 0 1-2.18 2.18zM5.5 7.5v9.5A1.5 1.5 0 0 0 7 18.5h.5V21a1.5 1.5 0 0 0 3 0v-2.5h3V21a1.5 1.5 0 0 0 3 0v-2.5H17a1.5 1.5 0 0 0 1.5-1.5V7.5h-13zm1.56-4.18 1.2-2.08a.28.28 0 0 1 .48.28l-1.2 2.08a5.44 5.44 0 0 1 4.92 0L11.24 1.6a.28.28 0 0 1 .48-.28l1.2 2.08A5.5 5.5 0 0 1 5.5 6H18.5a5.5 5.5 0 0 0-11.44-2.68z" />
     </svg>
   );
 }
