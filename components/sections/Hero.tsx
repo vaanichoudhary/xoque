@@ -970,21 +970,22 @@ function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
 
   const numStyle: React.CSSProperties = {
     position: "absolute",
+    zIndex: 10,
     fontFamily: "'Outfit', sans-serif",
-    fontSize: "clamp(0.58rem, 1.3vw, 0.95rem)",
+    fontSize: "clamp(0.90rem, 4vw, 6rem)",
     fontWeight: 600,
-    color: "rgba(210,196,175,0.52)",
+    color: "rgba(158, 158, 158, 0.9)",
     letterSpacing: "0.05em",
     lineHeight: 1,
     pointerEvents: "none",
     userSelect: "none",
     // vertical — sit right over the letter
-    ...(place.side === "above" ? { bottom: "84%" } : { top: "84%" }),
+    ...(place.side === "above" ? { bottom: "60%" } : { top: "75%" }),
     // horizontal
     ...(place.h === "right"
-      ? { right: "5px" }
+      ? { right: "30px" }
       : place.h === "left"
-      ? { left: "5px" }
+      ? { left: "90px" }
       : { left: "50%", transform: "translateX(-50%)" }),
   };
 
@@ -995,8 +996,8 @@ function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
         className="block leading-none font-bold select-none"
         style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: "clamp(3.8rem, 17vw, 13.5rem)",
-          letterSpacing: "-0.03em",
+          fontSize: "clamp(3.8rem, 22vw, 50rem)",
+          letterSpacing: "1.8rem",
           fontWeight: 700,
           color: "#ffffff",
           textShadow: "0 2px 32px rgba(0,0,0,0.55)",
@@ -1106,7 +1107,7 @@ export default function Hero() {
           style={{
             fontFamily: "'Outfit', sans-serif",
             fontSize: "clamp(0.8rem, 2vw, 1.3rem)",
-            fontWeight: 300,
+            fontWeight: 800,
             letterSpacing: "0.24em",
             color: "rgba(255,255,255,0.7)",
             textAlign: "center",
