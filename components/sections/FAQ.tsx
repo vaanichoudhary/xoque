@@ -7,43 +7,43 @@ const FAQS = [
     number: "01",
     q: "Why can't I upload from my gallery?",
     a: "Because yesterday is not now. XOQUE is built on a single rule: if you didn't take it in this moment, it doesn't belong here. Your gallery is full of memories — this app is for making them. The camera opens, you capture, you post. That's the whole flow.",
-    accent: "#c7d2fe", // lavender
-    textAccent: "#4f46e5",
+    accent: "#C095E4", // Somewhere in a Fairytale — soft lavender purple
+    textAccent: "#6b35a8",
   },
   {
     number: "02",
     q: "Is there an algorithm deciding what I see?",
     a: "Nope. The feed is chronological. The people you follow post, you see it — in order, in full, unranked. No engagement bait. No 'you might also like'. No invisible hand nudging you toward content that keeps you scrolling. Just people, in order, in time.",
-    accent: "#99f6e4", // mint
-    textAccent: "#0f766e",
+    accent: "#9BF6FF", // Eternal Winter — soft cyan
+    textAccent: "#0e7a8a",
   },
   {
     number: "03",
     q: "What even is Co-Create?",
     a: "Imagine you and your friend are at the same concert. You both open XOQUE and capture the moment — your angle, their angle. Co-Create stitches them into one shared post: same moment, two lenses, one truth. Your social media is a shared space. Your posts should be too.",
-    accent: "#fde68a", // yellow
-    textAccent: "#92400e",
+    accent: "#FDFFB6", // Parchment — soft yellow
+    textAccent: "#7a6800",
   },
   {
     number: "04",
     q: "How is this different from BeReal?",
     a: "BeReal was the right instinct, wrong execution. We don't do random timers. We don't do front-and-back forced captures. XOQUE trusts you to post when something real is happening — not when an alarm goes off. You're an adult. You know when something is worth sharing.",
-    accent: "#fecaca", // rose
-    textAccent: "#991b1b",
+    accent: "#FFA0C5", // Pastel Magenta — soft pink
+    textAccent: "#a0336a",
   },
   {
     number: "05",
     q: "Will there ever be ads?",
     a: "Not the kind that pretend to be your friend. We're building a subscription model — you pay a small amount, we owe you nothing but the product. No advertiser gets to whisper in our ear about what you should see or feel. Your attention is yours.",
-    accent: "#d9f99d", // lime
-    textAccent: "#3f6212",
+    accent: "#C095E4", // Somewhere in a Fairytale — lavender again
+    textAccent: "#6b35a8",
   },
   {
     number: "06",
     q: "Can I edit my post after sharing?",
     a: "No. And that's a feature. The moment you posted is the moment you were in. Editing it later would mean replacing a real thing with a revised thing. You can delete and repost — but you can't quietly make the past more flattering. Authenticity has no undo button.",
-    accent: "#e9d5ff", // purple
-    textAccent: "#6b21a8",
+    accent: "#9BF6FF", // Eternal Winter — back to cyan
+    textAccent: "#0e7a8a",
   },
 ];
 
@@ -81,12 +81,12 @@ function FAQItem({
       onKeyDown={(e) => e.key === "Enter" && onToggle()}
       aria-expanded={isOpen}
     >
-      {/* Colour wash background */}
+      {/* Colour wash background — softened with lower opacity */}
       <div
         className="absolute inset-0 rounded-none transition-all duration-500 ease-out pointer-events-none"
         style={{
           backgroundColor: faq.accent,
-          opacity: active ? (isOpen ? 1 : 0.45) : 0,
+          opacity: active ? (isOpen ? 0.55 : 0.28) : 0,
           transition: "opacity 0.4s ease, background-color 0.4s ease",
         }}
       />
@@ -108,7 +108,7 @@ function FAQItem({
         <h3
           className="flex-1 font-black leading-tight text-[#0d0d1a] transition-all duration-300"
           style={{
-            fontFamily:"var(--font-display)",
+            fontFamily: "var(--font-display)",
             fontSize: "clamp(1.05rem, 2.4vw, 1.6rem)",
             letterSpacing: "-0.02em",
           }}
@@ -195,8 +195,8 @@ export default function FAQ() {
         }`}
       >
         <span
-          className="text-[11px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mb-4 block"
-          style={{ fontFamily: "'DM Mono', monospace" }}
+          className="text-[11px] font-bold tracking-[0.18em] uppercase mb-4 block"
+          style={{ fontFamily: "'DM Mono', monospace", color: "#6b35a8" }}
         >
           Got questions?
         </span>
@@ -254,7 +254,7 @@ export default function FAQ() {
         </p>
         <a
           href="mailto:hello@xoque.app"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#0d0d1a]/20 text-[#0d0d1a] text-[13px] font-bold hover:border-[#6366f1] hover:text-[#6366f1] transition-all duration-200"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#0d0d1a]/20 text-[#0d0d1a] text-[13px] font-bold hover:border-[#6b35a8] hover:text-[#6b35a8] transition-all duration-200"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Talk to us

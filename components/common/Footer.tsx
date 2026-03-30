@@ -36,7 +36,7 @@ export default function Footer() {
     <footer className="w-full" style={{ backgroundColor: "#0d0d1a" }}>
 
       {/* ── CTA Band ── */}
-      <div className="relative overflow-hidden border-b border-white/10" style={{ backgroundColor: "#f0c040" }}>
+      <div className="relative overflow-hidden border-b border-white/10" style={{ backgroundColor: "#c095e4" }}>
         <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-16">
 
           {/* MOBILE: stacked compact */}
@@ -53,7 +53,7 @@ export default function Footer() {
               {submitted ? (
                 <div className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#0d0d1a] text-white text-[12px] font-bold"
                   style={{ fontFamily: "var(--font-display)" }}>
-                  <span className="text-[#f0c040]">✦</span> You're on the list.
+                  <span style={{ color: "#c095e4" }}>✦</span> You're on the list.
                 </div>
               ) : (
                 <>
@@ -85,7 +85,7 @@ export default function Footer() {
               {submitted ? (
                 <div className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#0d0d1a] text-white text-sm font-bold"
                   style={{ fontFamily: "var(--font-display)" }}>
-                  <span className="text-[#f0c040]">✦</span> You're on the list.
+                  <span style={{ color: "#c095e4" }}>✦</span> You're on the list.
                 </div>
               ) : (
                 <>
@@ -108,7 +108,7 @@ export default function Footer() {
       {/* ── Footer body ── */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-16">
 
-        {/* MOBILE layout — creative compact card grid */}
+        {/* MOBILE layout */}
         <div className="md:hidden pt-8 pb-6">
 
           {/* Logo + tagline row */}
@@ -125,7 +125,6 @@ export default function Footer() {
                 Real moments. No AI. No filters.
               </p>
             </div>
-            {/* Socials — right aligned on mobile */}
             <div className="flex gap-2 mt-1">
               {SOCIALS.map(s => (
                 <a key={s.label} href="#" aria-label={s.label}
@@ -136,7 +135,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links — 3 cols compact grid */}
+          {/* Links */}
           <div className="grid grid-cols-3 gap-x-4 gap-y-5 mb-6">
             {Object.entries(LINKS).map(([heading, items]) => (
               <div key={heading}>
@@ -173,7 +172,7 @@ export default function Footer() {
               </p>
               <div className="flex items-center gap-1.5 text-[10px] text-white/20"
                 style={{ fontFamily: "var(--font-mono)" }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#f0c040]" />
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#c095e4" }} />
                 imperfect but real.
               </div>
             </div>
@@ -190,7 +189,7 @@ export default function Footer() {
         <div className="hidden md:block pt-12 pb-8">
           <div className="grid grid-cols-5 gap-8 lg:gap-10 mb-12">
 
-            {/* Brand col — 2 cols */}
+            {/* Brand col */}
             <div className="col-span-2 flex flex-col gap-4">
               <a href="/">
                 <span className="text-2xl font-black text-white"
@@ -251,7 +250,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-1.5 text-[11px] text-white/18"
               style={{ fontFamily: "var(--font-mono)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#f0c040]" />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#c095e4" }} />
               Made for the real world
             </div>
           </div>

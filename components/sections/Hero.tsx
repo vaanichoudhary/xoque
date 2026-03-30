@@ -907,19 +907,23 @@ function XoqueLogo() {
       aria-hidden
     >
       <defs>
+        {/* Line 1: cyan top-left → purple where it meets line 2 */}
         <linearGradient id="l1" x1="-78" y1="-10" x2="600" y2="900" gradientUnits="userSpaceOnUse">
           <stop offset="0%"   stopColor="#00e5ff" />
+          <stop offset="40%"  stopColor="#5a22e8" />
           <stop offset="100%" stopColor="#7020e8" />
         </linearGradient>
 
-        <linearGradient id="l23" x1="-10" y1="470" x2="1600" y2="850" gradientUnits="userSpaceOnUse">
+        {/* Line 2: starts cyan-ish, quickly becomes the same deep purple as l1's end, then transitions to magenta/pink */}
+        <linearGradient id="l2" x1="-10" y1="470" x2="1600" y2="850" gradientUnits="userSpaceOnUse">
           <stop offset="0%"   stopColor="#00d4ff" />
-          <stop offset="18%"  stopColor="#4a28e0" />
-          <stop offset="28%"  stopColor="#7020e8" />
-          <stop offset="55%"  stopColor="#cc18cc" />
+          <stop offset="15%"  stopColor="#5a22e8" />
+          <stop offset="30%"  stopColor="#7020e8" />
+          <stop offset="50%"  stopColor="#cc18cc" />
           <stop offset="100%" stopColor="#ff08b0" />
         </linearGradient>
 
+        {/* Ring: purple → magenta → pink */}
         <linearGradient id="ring" x1="650" y1="80" x2="1070" y2="520" gradientUnits="userSpaceOnUse">
           <stop offset="0%"   stopColor="#7020e8" />
           <stop offset="45%"  stopColor="#b818d8" />
@@ -930,11 +934,11 @@ function XoqueLogo() {
       {/* O ring */}
       <circle cx="905" cy="90" r="350" stroke="url(#ring)" strokeWidth="85" fill="none" />
 
-      {/* Line 1: upper-left diagonal — thinner */}
+      {/* Line 1: upper-left diagonal */}
       <line x1="-78" y1="-10" x2="600" y2="900" stroke="url(#l1)" strokeWidth="28" strokeLinecap="round" />
 
-      {/* Line 2+3 combined: single continuous line from left edge → bottom-right */}
-      <line x1="-10" y1="470" x2="1600" y2="850" stroke="url(#l23)" strokeWidth="95" strokeLinecap="round" />
+      {/* Line 2: wide diagonal */}
+      <line x1="-10" y1="470" x2="1600" y2="850" stroke="url(#l2)" strokeWidth="95" strokeLinecap="round" />
     </svg>
   );
 }

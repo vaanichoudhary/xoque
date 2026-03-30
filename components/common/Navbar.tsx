@@ -500,20 +500,21 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between gap-4">
 
-            {/* Logo */}
-            <a href="/" aria-label="XOQUE Home" className="flex-shrink-0">
-              <span
-                className="font-black text-white"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.05rem, 2.5vw, 1.25rem)",
-                  letterSpacing: "-0.04em",
-                }}
-              >
-                XOQUE<span style={{ color: "#7c3aed" }}>.</span>
-              </span>
-            </a>
-
+         {/* Logo */}
+<a href="/" aria-label="XOQUE Home" className="flex-shrink-0">
+  <span
+    className="font-black text-white"
+    style={{
+      fontFamily: "'Unbounded', sans-serif",
+      fontSize: "clamp(1.05rem, 2.5vw, 1.25rem)",
+      letterSpacing: "-0.04em",
+      fontWeight: 900,
+      textTransform: "lowercase",
+    }}
+  >
+    xoque
+  </span>
+</a>
             {/* Desktop links */}
             <ul className="hidden md:flex items-center gap-0.5">
               {NAV_LINKS.map((link) => (
