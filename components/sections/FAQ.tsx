@@ -194,12 +194,7 @@ export default function FAQ() {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
         }`}
       >
-        <span
-          className="text-[11px] font-bold tracking-[0.18em] uppercase mb-4 block"
-          style={{ fontFamily: "'DM Mono', monospace", color: "#6b35a8" }}
-        >
-          Got questions?
-        </span>
+       
         <h2
           className="font-black text-[#0d0d1a] leading-tight mb-4"
           style={{
@@ -208,12 +203,11 @@ export default function FAQ() {
             letterSpacing: "-0.03em",
           }}
         >
-          Everything you were
-          <br />
-          too real to ask.
+         Got
+        Questions ?
         </h2>
         <p
-          className="text-[14px] sm:text-[15px] text-[#0d0d1a]/45 max-w-sm mx-auto"
+          className="text-[14px] sm:text-[18px] text-[#0d0d1a]/45  mx-auto"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           No fluff. No corporate speak. Just honest answers.

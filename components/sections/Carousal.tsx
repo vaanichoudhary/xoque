@@ -167,7 +167,7 @@ function PhotoMarqueeRow({ items, direction, speed = 35 }: {
 }) {
   const isLeft = direction === "left";
   return (
-    <div className="relative overflow-hidden w-full" style={{ height: "236px" }}>
+    <div className="relative overflow-hidden w-full mb-10" style={{ height: "236px" }}>
       {/* Fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
         style={{ background: "linear-gradient(to right,#f0efeb,transparent)" }} />
@@ -231,10 +231,10 @@ export default function Testimonials() {
     <section className="w-full overflow-hidden" style={{ backgroundColor: "#f0efeb" }}>
 
       {/* PART 1 — Photo marquee */}
-      <div ref={r1} className="pt-16 sm:pt-20 pb-12">
+      <div ref={r1} className="pt-16 sm:pt-20 pb-12 mt-5">
 
         <div className={`px-5 sm:px-12 lg:px-20 mb-8 transition-all duration-700 ${v1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <span className="text-[19px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mb-2 block"
+          <span className="text-[25px] mb-5  font-bold tracking-[0.18em] uppercase text-[#6366f1] mb-2 block"
             style={{ fontFamily: "var(--font-mono)" }}>Inside XOQUE</span>
           <h2 className="font-extrabold leading-tight text-[#0d0d1a]"
             style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem,3.5vw,2.4rem)", letterSpacing: "-0.025em" }}>
@@ -243,7 +243,7 @@ export default function Testimonials() {
               Real people.
             </span>
           </h2>
-          <p className="mt-2 py-5 text-[18px] text-[#4b4b6a]/55 max-w-sm" style={{ fontFamily: "var(--font-body)" }}>
+          <p className="mt-2 py-5 text-[19px] text-[#4b4b6a]/55 max-w-sm mb-8" style={{ fontFamily: "var(--font-body)" }}>
             A glimpse into what XOQUE looks like in the wild.
           </p>
         </div>
@@ -257,13 +257,13 @@ export default function Testimonials() {
       <div className="mx-5 sm:mx-12 lg:mx-20 h-px" style={{ backgroundColor: "rgba(13,13,26,0.08)" }} />
 
       {/* PART 2 — Testimonials */}
-      <div ref={r2} className="pt-14 sm:pt-20 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-16">
+      <div ref={r2} className="pt-14 sm:pt-20 pb-7 sm:pb-24 mt-4 px-5 sm:px-8 lg:px-16">
         <div className={`mb-10 text-center transition-all duration-700 ${v2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="font-extrabold text-[#0d0d1a] leading-tight"
             style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem,4vw,2.8rem)", letterSpacing: "-0.025em" }}>
             What the community thinks of XOQUE.
           </h2>
-          <p className="mt-2 text-[18px] text-[#4b4b6a]/50" style={{ fontFamily: "var(--font-body)" }}>
+          <p className="mt-8 mb-13 text-[18px] text-[#4b4b6a]/50" style={{ fontFamily: "var(--font-body)" }}>
             No paid reviews. No influencer deals. Just real people.
           </p>
         </div>

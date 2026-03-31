@@ -16,7 +16,7 @@ function DoodleSlashes({ className, style }: { className?: string; style?: React
 function DropdownMockup() {
   const items = ["Real post ✦", "📍 Live moment", "🎯 Candid shot", "📸 Right now", "🔥 Unfiltered"];
   return (
-    <div className="rounded-xl overflow-hidden shadow-xl border border-white/10 bg-[#1c1c2e] w-[160px]">
+    <div className="rounded-xl overflow-hidden shadow-xl border border-white/10 bg-[#1c1c2e] h-[200] w-[250px]">
       {items.map((item, i) => (
         <div
           key={i}
@@ -141,14 +141,14 @@ export default function Pillars() {
       {/* Heading */}
       <div className={`mb-7 sm:mb-9 max-w-md transition-all duration-600 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         <span
-          className="text-[11px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mb-2 block"
+          className="text-[30px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mt-2mb-2 block"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          Why XOQUE
+          Why xoque
         </span>
         <h2
-          className="font-extrabold leading-tight text-[#0d0d1a] mb-2"
-          style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "-0.025em" }}
+          className="font-extrabold leading-tight text-[#0d0d1a] mb-9 mt-5"
+          style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 5vw, 3rem)", letterSpacing: "-0.025em" }}
         >
           Built on three{" "}
           <span className="relative inline-block">
@@ -157,7 +157,7 @@ export default function Pillars() {
           </span>
         </h2>
         <p
-          className="text-[12px] sm:text-[13px] text-[#4b4b6a]/60 leading-relaxed"
+          className="text-[12px] sm:text-[20px] text-left text-[#4b4b6a]/60 leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Protecting your attention, your authenticity, and your time.
@@ -166,12 +166,12 @@ export default function Pillars() {
 
       {/* Cards */}
       <div className={`transition-all duration-700 delay-100 ${visible ? "opacity-100" : "opacity-0"}`}>
-
+ 
         {/* ── DESKTOP ── */}
         <div className="hidden md:block relative">
           <div
             className="grid gap-x-5"
-            style={{ gridTemplateColumns: "1fr 36%", gridTemplateRows: "auto auto" }}
+            style={{ gridTemplateColumns: "1fr 35%", gridTemplateRows: "1fr 1fr " }}
           >
             {/* Card A — top left */}
             <div
@@ -180,7 +180,7 @@ export default function Pillars() {
                 gridColumn: "1",
                 gridRow: "1",
                 background: "linear-gradient(135deg,#4f6ef7 0%,#7b6cf6 30%,#c97b4b 70%,#e8895a 100%)",
-                minHeight: "340px",
+                minHeight: "470px",
               }}
             >
               <div
@@ -188,10 +188,10 @@ export default function Pillars() {
                 style={{ background: "radial-gradient(ellipse at 30% 20%,rgba(255,255,255,0.35) 0%,transparent 55%)" }}
               />
               <div className="relative z-10">
-                <h3 className="text-[15px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+                <h3 className="text-[25px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
                   Real Content Only
                 </h3>
-                <p className="text-[12px] text-white/70 leading-relaxed max-w-[280px]" style={{ fontFamily: "var(--font-body)" }}>
+                <p className="text-[18px] text-white/70 leading-relaxed max-w-[500px]" style={{ fontFamily: "var(--font-body)" }}>
                   No AI-generated content. Every post is made by a real person in a real moment. No bots, no synthetic feeds.
                 </p>
               </div>
@@ -211,7 +211,7 @@ export default function Pillars() {
                 gridRow: "2",
                 marginLeft: "8%",
                 background: "linear-gradient(135deg,#e8895a 0%,#c97b8a 35%,#7b6cf6 70%,#4f6ef7 100%)",
-                minHeight: "240px",
+                minHeight: "320px",
               }}
             >
               <div
@@ -220,10 +220,10 @@ export default function Pillars() {
               />
               <div className="relative z-10 flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-[15px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+                  <h3 className="text-[25px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
                     No Addictive Scrolling
                   </h3>
-                  <p className="text-[12px] text-white/70 leading-relaxed max-w-[200px]" style={{ fontFamily: "var(--font-body)" }}>
+                  <p className="text-[18px] text-white/70 leading-relaxed max-w-[400px]" style={{ fontFamily: "var(--font-body)" }}>
                     No reels, no infinite scroll. See what matters, then go live your life.
                   </p>
                 </div>
@@ -239,10 +239,11 @@ export default function Pillars() {
               className="relative rounded-[20px] overflow-hidden p-5 sm:p-6 flex flex-col cursor-pointer hover:scale-[1.012] transition-transform duration-300"
               style={{
                 gridColumn: "2",
-                gridRow: "1 / 3",
-                marginTop: "-28px",
+                gridRow: "1/3",
+                marginTop: "-20px",
                 background: "linear-gradient(160deg,#4a6cf7 0%,#8b6cf6 40%,#c87b4a 80%,#e07a40 100%)",
                 alignSelf: "start",
+                 minHeight: "600px",
               }}
             >
               <div
@@ -250,10 +251,10 @@ export default function Pillars() {
                 style={{ background: "radial-gradient(ellipse at 70% 12%,rgba(255,255,255,0.3) 0%,transparent 50%)" }}
               />
               <div className="relative z-10 mb-3">
-                <h3 className="text-[15px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+                <h3 className="text-[25px] font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
                   Real-Time Sharing
                 </h3>
-                <p className="text-[12px] text-white/70 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                <p className="text-[18px] text-white/70 leading-relaxed mb-10" style={{ fontFamily: "var(--font-body)" }}>
                   Capture and post instantly. No gallery uploads. If you didn't take it now, it doesn't belong here.
                 </p>
               </div>

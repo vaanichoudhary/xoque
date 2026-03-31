@@ -678,7 +678,7 @@ export default function Features() {
     <section className="w-full bg-white px-4 sm:px-8 md:px-12 lg:px-16 py-10 sm:py-16 flex flex-col gap-6 sm:gap-10">
 
       {/* ══ CARD 1 — Co-Create ══ */}
-      <div ref={ref1} className="relative">
+      <div ref={ref1} className="relative mt-10">
         {/* Tilted heading overlapping card top */}
         <h2
           className={`relative z-10 font-black leading-none text-[#0d0d1a] ml-4 sm:ml-10 transition-all duration-700 ${v1 ? "opacity-100" : "opacity-0"}`}
@@ -730,7 +730,7 @@ export default function Features() {
       </div>
 
       {/* ══ CARD 2 — Que ══ */}
-      <div ref={ref2} className="relative flex flex-col items-end">
+      <div ref={ref2} className="relative h-[1/3] flex flex-col items-end mt-15">
         {/* Tilted heading right-aligned */}
         <h2
           className={`relative z-10 font-black leading-none text-[#0d0d1a] mr-4 sm:mr-10 transition-all duration-700 ${v2 ? "opacity-100" : "opacity-0"}`}

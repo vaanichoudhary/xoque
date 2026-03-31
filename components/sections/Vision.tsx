@@ -387,13 +387,7 @@ export default function Vision() {
           <div
             className={`flex flex-col transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           >
-            {/* Eyebrow label */}
-            <span
-              className="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#0d0d1a]/50 mb-2 sm:mb-3"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Design
-            </span>
+            
 
             {/* Big heading */}
             <h2
@@ -423,7 +417,7 @@ export default function Vision() {
 
             {/* Body copy */}
             <p
-              className="text-[10px] sm:text-[12px] md:text-[13px] text-[#0d0d1a]/65 leading-relaxed mb-4 sm:mb-6"
+              className="text-[10px] sm:text-[12px] md:text-[18px] text-[#0d0d1a]/65 leading-relaxed mt-5 mb-4 sm:mb-8"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Work together in real time and empower your community to create in new ways. Keep your feed authentic with moments that give every connection visibility throughout the day.

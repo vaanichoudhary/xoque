@@ -46,7 +46,7 @@ export default function Hook() {
 
       {/* Subtext */}
       <p
-        className={`mt-6 text-[22px] sm:text-base text-[#4b4b6a]/70 font-medium tracking-wide transition-all duration-700 delay-200 ease-out ${
+        className={`mt-6 text-[15px] sm:text-[25px] text-[#4b4b6a]/70 font-medium tracking-wide transition-all duration-700 delay-200 ease-out ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
         }`}
         style={{ fontFamily: "'DM Sans', sans-serif" }}
