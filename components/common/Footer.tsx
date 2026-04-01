@@ -331,7 +331,7 @@ export default function Footer() {
           {/* MOBILE */}
           <div className="md:hidden py-10 flex flex-col items-center gap-5 text-center">
             <div>
-              <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-[#0d0d1a]/45 mb-1.5"
+              <p className="text-[18px] font-bold tracking-[0.18em] uppercase text-[#0d0d1a]/45 mb-1.5"
                 style={{ fontFamily: "var(--font-mono)" }}>Be first</p>
               <h2 className="text-[1.7rem] font-black text-[#0d0d1a] leading-tight"
                 style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.03em" }}>

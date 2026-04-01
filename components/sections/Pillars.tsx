@@ -133,13 +133,13 @@ export default function Pillars() {
       {/* Heading */}
       <div className={`mb-7 sm:mb-9 max-w-md transition-all duration-600 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         <span
-          className="text-[30px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mt-2mb-2 block"
+          className="text-[25px] font-bold tracking-[0.18em] uppercase text-[#6366f1] mt-2mb-2 block"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           Why xoque
         </span>
         <h2
-          className="font-extrabold leading-tight text-[#0d0d1a] mb-9 mt-5"
+          className="font-extrabold leading-tight text-[#0d0d1a] mb-5 mt-5"
           style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 5vw, 3rem)", letterSpacing: "-0.025em" }}
         >
           Built on three{" "}
@@ -149,7 +149,7 @@ export default function Pillars() {
           </span>
         </h2>
         <p
-          className="text-[12px] sm:text-[20px] text-left text-[#4b4b6a]/60 leading-relaxed"
+          className="text-[18px] sm:text-[20px] text-left text-[#4b4b6a]/60 leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Protecting your attention, your authenticity, and your time.

@@ -554,7 +554,6 @@ function CoCreateMockup() {
     { rotate: "6deg",  top: "68px", left: "52px", user: "@sara.k",    label: "Real 📍",     text: "This exact moment.", av: "linear-gradient(135deg,#0ea5e9,#10b981)" },
   ];
   return (
-    /* Fixed size — never shrinks. Parent controls how much space it gets. */
     <div className="relative" style={{ width: "230px", height: "250px", flexShrink: 0 }}>
       <DotCluster color="#4f46e5" className="-bottom-5 -right-5" />
       {cards.map((c, i) => (
@@ -620,10 +619,8 @@ function QueMockup() {
   );
 }
 
-/* Reusable text column */
 function TextCol({
   heading, body, cta, ctaHref = "#",
-  accentColor = "#0d0d1a",
 }: {
   heading: string;
   body: string;
@@ -641,7 +638,7 @@ function TextCol({
       </h3>
       <p
         className="text-[#0d0d1a]/60 leading-relaxed"
-        style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.82rem, 1.2vw, 0.95rem)" }}
+        style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.82rem, 1.2vw, 15px)" }}
       >
         {body}
       </p>
@@ -679,7 +676,6 @@ export default function Features() {
 
       {/* ══ CARD 1 — Co-Create ══ */}
       <div ref={ref1} className="relative mt-10">
-        {/* Tilted heading overlapping card top */}
         <h2
           className={`relative z-10 font-black leading-none text-[#0d0d1a] ml-4 sm:ml-10 transition-all duration-700 ${v1 ? "opacity-100" : "opacity-0"}`}
           style={{
@@ -695,31 +691,42 @@ export default function Features() {
           Co-Create<span style={{ color: "#6366f1" }}>.</span>
         </h2>
 
-        {/* Card */}
         <div
           className={`relative rounded-[24px] overflow-hidden transition-all duration-700 delay-100 ${v1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           style={{ backgroundColor: "#c7d2fe" }}
         >
-          {/*
-            KEY FIX: CSS Grid with two equal columns.
-            Each column is exactly 50% of the card.
-            Mockup column: centers the mockup horizontally.
-            Text column: justify-center vertically.
-          */}
+          {/* Desktop (sm+): unchanged side-by-side grid */}
           <div
-            className="grid items-center"
+            className="hidden sm:grid items-center"
             style={{
               gridTemplateColumns: "1fr 1fr",
               gap: "clamp(16px, 4vw, 48px)",
               padding: "clamp(32px, 5vw, 56px) clamp(20px, 4vw, 48px)",
             }}
           >
-            {/* Left — mockup centred in its half */}
             <div className="flex items-center justify-center">
               <CoCreateMockup />
             </div>
+            <TextCol
+              heading="Share the moment as it happens — together."
+              body="They say every picture tells a story — we thought, why not let the group tell the entire story? Tag your friends and let them narrate through their lens. What better way to capture a moment than letting the whole squad jump in."
+              cta="Learn more"
+            />
+          </div>
 
-            {/* Right — text fills its half */}
+          {/* Mobile (<sm): mockup on top, text below */}
+          <div className="flex flex-col sm:hidden" style={{ padding: "28px 20px 36px" }}>
+            <div
+              className="flex justify-center"
+              style={{
+                transform: "scale(0.8)",
+                transformOrigin: "center top",
+                height: "200px",         /* clamp visual space after scale */
+                marginBottom: "8px",
+              }}
+            >
+              <CoCreateMockup />
+            </div>
             <TextCol
               heading="Share the moment as it happens — together."
               body="They say every picture tells a story — we thought, why not let the group tell the entire story? Tag your friends and let them narrate through their lens. What better way to capture a moment than letting the whole squad jump in."
@@ -730,8 +737,7 @@ export default function Features() {
       </div>
 
       {/* ══ CARD 2 — Que ══ */}
-      <div ref={ref2} className="relative h-[1/3] flex flex-col items-end mt-15">
-        {/* Tilted heading right-aligned */}
+      <div ref={ref2} className="relative flex flex-col items-end mt-15">
         <h2
           className={`relative z-10 font-black leading-none text-[#0d0d1a] mr-4 sm:mr-10 transition-all duration-700 ${v2 ? "opacity-100" : "opacity-0"}`}
           style={{
@@ -747,48 +753,51 @@ export default function Features() {
           Que Cards<span style={{ color: "#0d9488" }}>.</span>
         </h2>
 
-        {/* Card */}
         <div
           className={`relative rounded-[24px] overflow-hidden w-full transition-all duration-700 delay-100 ${v2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           style={{ backgroundColor: "#99f6e4" }}
         >
+          {/* Desktop (sm+): unchanged side-by-side grid */}
           <div
-            className="grid items-center"
+            className="hidden sm:grid items-center"
             style={{
               gridTemplateColumns: "1fr 1fr",
               gap: "clamp(16px, 4vw, 48px)",
               padding: "clamp(32px, 5vw, 56px) clamp(20px, 4vw, 48px)",
             }}
           >
-            {/* Left — text */}
             <TextCol
               heading="Post it now. No gallery, no delays."
               body="You don't always need a photo to share a moment. Sometimes it's just a thought, a feeling, or something small. Que cards are quick, simple, and real — just like conversations with your people. Share a thought, share a plan, share it all."
               cta="See how it works"
             />
-
-            {/* Right — mockup centred in its half */}
             <div className="flex items-center justify-center">
               <QueMockup />
             </div>
           </div>
+
+          {/* Mobile (<sm): mockup on top, text below */}
+          <div className="flex flex-col sm:hidden" style={{ padding: "28px 20px 36px" }}>
+            <div
+              className="flex justify-center"
+              style={{
+                transform: "scale(0.8)",
+                transformOrigin: "center top",
+                height: "200px",
+                marginBottom: "8px",
+              }}
+            >
+              <QueMockup />
+            </div>
+            <TextCol
+              heading="Post it now. No gallery, no delays."
+              body="You don't always need a photo to share a moment. Sometimes it's just a thought, a feeling, or something small. Que cards are quick, simple, and real — just like conversations with your people. Share a thought, share a plan, share it all."
+              cta="See how it works"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Mobile override — stack on very small screens */}
-      <style>{`
-        @media (max-width: 520px) {
-          .features-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .features-grid .mockup-col {
-            order: -1;
-            transform: scale(0.75);
-            transform-origin: center top;
-            margin-bottom: -24px;
-          }
-        }
-      `}</style>
     </section>
   );
 }
