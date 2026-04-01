@@ -4,14 +4,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-function DoodleSlashes({ className, style }: { className?: string; style?: React.CSSProperties }) {
-  return (
-    <svg className={className} style={style} width="34" height="40" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="8"  y1="38" x2="20" y2="2"  stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="20" y1="38" x2="32" y2="2"  stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
 
 function DropdownMockup() {
   const items = ["Real post ✦", "📍 Live moment", "🎯 Candid shot", "📸 Right now", "🔥 Unfiltered"];
@@ -264,17 +256,8 @@ export default function Pillars() {
             </div>
           </div>
 
-          {/* Doodle 1 — above Card B top-right */}
-          <DoodleSlashes
-            className="absolute pointer-events-none"
-            style={{ top: "-34px", right: "calc(36% - 14px)" }}
-          />
-
-          {/* Doodle 2 — between Card A and Card C, left side */}
-          <DoodleSlashes
-            className="absolute pointer-events-none"
-            style={{ top: "352px", left: "6px" }}
-          />
+         
+         
         </div>
 
         {/* ── MOBILE ── */}
