@@ -203,7 +203,7 @@ function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
               <span className="text-[13px] font-bold text-[#0d0d1a]" style={{ fontFamily: "var(--font-display)" }}>{t.name}</span>
               <VerifiedBadge />
             </div>
-            <span className="text-[11px] text-[#0d0d1a]/40" style={{ fontFamily: "var(--font-mono)" }}>{t.handle}</span>
+           <span className="text-[11px] text-[#0d0d1a]/40" style={{ fontFamily: "var(--font-inter)" }}>{t.handle}</span>
           </div>
         </div>
         <XIcon />

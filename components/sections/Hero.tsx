@@ -896,64 +896,211 @@ import { useEffect, useState } from "react";
     From junction (585, 587) → exits bottom-right corner (1392, 782)
     Gradient: purple at junction → hot pink at far right
 */
+/*
+  UPDATED XoqueLogo component
+  ─────────────────────────────────────────────────────────────────
+  LAPTOP (≥1025px): UNCHANGED — same SVG, same transforms as before.
+  MOBILE (≤640px) & TABLET (641–1024px): New SVG matching the reference
+    image exactly:
+      • Large circle, partially off-screen to the top-right
+      • An X shape (two thick crossing diagonals) in the lower-left area
+      • Cyan → purple → hot-pink gradient throughout
+*/
+
 function XoqueLogo() {
   return (
-    <svg
-      className="absolute inset-0 w-full h-full"
-      viewBox="0 0 1392 782"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden
-    >
-      <defs>
-        {/* Line 1: cyan top-left → purple where it meets line 2 */}
-        <linearGradient id="l1" x1="-78" y1="-10" x2="600" y2="900" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#00e5ff" />
-          <stop offset="40%"  stopColor="#5a22e8" />
-          <stop offset="100%" stopColor="#7020e8" />
-        </linearGradient>
+    <>
+      {/* ── LAPTOP background (≥1025px) — pixel-perfect, untouched ── */}
+      <svg
+        className="absolute inset-0 w-full h-full xoque-bg-logo xoque-laptop"
+        viewBox="0 0 1392 782"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden
+      >
+        <defs>
+          <linearGradient id="l1" x1="-78" y1="-10" x2="600" y2="900" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#00e5ff" />
+            <stop offset="40%" stopColor="#5a22e8" />
+            <stop offset="100%" stopColor="#7020e8" />
+          </linearGradient>
 
-        {/* Line 2: starts cyan-ish, quickly becomes the same deep purple as l1's end, then transitions to magenta/pink */}
-        <linearGradient id="l2" x1="-10" y1="470" x2="1600" y2="850" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#00d4ff" />
-          <stop offset="15%"  stopColor="#5a22e8" />
-          <stop offset="30%"  stopColor="#7020e8" />
-          <stop offset="50%"  stopColor="#cc18cc" />
-          <stop offset="100%" stopColor="#ff08b0" />
-        </linearGradient>
+          <linearGradient id="l2" x1="-10" y1="470" x2="1600" y2="850" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#00d4ff" />
+            <stop offset="15%" stopColor="#5a22e8" />
+            <stop offset="30%" stopColor="#7020e8" />
+            <stop offset="50%" stopColor="#cc18cc" />
+            <stop offset="100%" stopColor="#ff08b0" />
+          </linearGradient>
 
-        {/* Ring: purple → magenta → pink */}
-        <linearGradient id="ring" x1="650" y1="80" x2="1070" y2="520" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#7020e8" />
-          <stop offset="45%"  stopColor="#b818d8" />
-          <stop offset="100%" stopColor="#ff08b0" />
-        </linearGradient>
-      </defs>
+          <linearGradient id="ring" x1="650" y1="80" x2="1070" y2="520" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#7020e8" />
+            <stop offset="45%" stopColor="#b818d8" />
+            <stop offset="100%" stopColor="#ff08b0" />
+          </linearGradient>
+        </defs>
 
-      {/* O ring */}
-      <circle cx="905" cy="90" r="350" stroke="url(#ring)" strokeWidth="85" fill="none" />
+        {/* O ring */}
+        <circle cx="905" cy="90" r="350" stroke="url(#ring)" strokeWidth="85" fill="none" />
 
-      {/* Line 1: upper-left diagonal */}
-      <line x1="-78" y1="-10" x2="600" y2="900" stroke="url(#l1)" strokeWidth="28" strokeLinecap="round" />
+        {/* Line 1: upper-left diagonal */}
+        <line x1="-78" y1="-10" x2="600" y2="900" stroke="url(#l1)" strokeWidth="28" strokeLinecap="round" />
 
-      {/* Line 2: wide diagonal */}
-      <line x1="-10" y1="470" x2="1600" y2="850" stroke="url(#l2)" strokeWidth="95" strokeLinecap="round" />
-    </svg>
+        {/* Line 2: wide diagonal */}
+        <line x1="-10" y1="470" x2="1600" y2="850" stroke="url(#l2)" strokeWidth="95" strokeLinecap="round" />
+      </svg>
+
+      {/* ── MOBILE & TABLET background (≤1024px) — matches reference image ── */}
+      {/*
+        Reference image geometry (portrait phone, ~390×844):
+          CIRCLE: large ring, center at ~(310, 255), radius ~205px
+            — partially clipped off top & right edges
+            Gradient: blue-purple (top-left) → hot-pink (bottom-right)
+
+          X SHAPE: two thick lines crossing at ~(185, 640)
+            Line A (↘): from top-left off-screen → crosses junction → exits bottom-right area
+              top anchor:  (-40, 480)  junction (185,640)  bottom: (380, 850)
+            Line B (↙): from right side / slightly above → crosses junction → exits bottom-left
+              top anchor:  (400, 490)  junction (185,640)  bottom: (-30, 810)
+
+          All lines share cyan (#00d4ff) at their upper ends, transitioning
+          through purple (#7030e8) at the junction, fading to hot-pink (#ff18c8)
+          at their lower ends.
+      */}
+      <svg
+        className="absolute inset-0 w-full h-full xoque-bg-logo xoque-mobile"
+        viewBox="0 0 390 844"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden
+      >
+        <defs>
+          {/* Circle gradient: cyan-blue top-left → vivid pink bottom-right */}
+          <linearGradient id="ringM" x1="100" y1="50" x2="430" y2="520" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#5a7fff" />
+            <stop offset="35%" stopColor="#8a30f0" />
+            <stop offset="100%" stopColor="#ff18c8" />
+          </linearGradient>
+
+          {/* X Line A: top-left → bottom-right slash (cyan top, pink bottom) */}
+          <linearGradient id="xaM" x1="-40" y1="480" x2="380" y2="855" gradientUnits="userSpaceOnUse">
+            <stop offset="5%" stopColor="#00d4ff" />
+            <stop offset="20%" stopColor="#7030e8" />
+              <stop offset="70%" stopColor="#5a22e8" />
+            <stop offset="100%" stopColor="#d418d4" />
+          </linearGradient>
+
+          {/* X Line B: top-right → bottom-left backslash (purple/pink top, cyan-purple bottom) */}
+          <linearGradient id="xbM" x1="400" y1="490" x2="-30" y2="820" gradientUnits="userSpaceOnUse">
+             <stop offset="10%" stopColor="#cc18cc" />
+             <stop offset="70%" stopColor="#5a22e8" />
+               <stop offset="100%" stopColor="#00d4ff" />
+             {/* <stop offset="20%" stopColor="#00d4ff" />
+
+            <stop offset="50%" stopColor="#9028e8" />
+            
+            <stop offset="90%" stopColor="#5a22e8" />
+            <stop offset="100%" stopColor="#cc18cc" /> */}
+          </linearGradient>
+        </defs>
+
+        {/*
+          CIRCLE — center (310, <stop offset="100%" stopColor="#cc18cc" />255), radius 205
+          Clipped naturally by the SVG viewport at top and right.
+          The bottom-left arc is fully visible; top-right disappears off-screen.
+        */}
+        <circle
+          cx="360"
+          cy="300"
+          r="205"
+          stroke="url(#ringM)"
+          strokeWidth="62"
+          fill="none"
+        />
+
+        {/*
+          X LINE A — the "forward slash" arm of the X
+          Goes from upper-left off-screen (-40, 480) through junction (185, 640)
+          down to lower-right (380, 855)
+        */}
+        <line
+          x1="-40" y1="550"
+          x2="400" y2="980"
+          stroke="url(#xaM)"
+          strokeWidth="35"
+          strokeLinecap="round"
+        />
+
+        {/*
+          X LINE B — the "back slash" arm of the X
+          Goes from right side (400, 490) through junction (185, 640)
+          down to lower-left (-30, 810)
+        */}
+        <line
+          x1="-10" y1="700"
+          x2="500" y2="780"
+          stroke="url(#xbM)"
+          strokeWidth="58"
+          strokeLinecap="round"
+        />
+      </svg>
+
+      <style>{`
+        /* Show/hide based on screen width */
+        .xoque-laptop { display: none; }
+        .xoque-mobile { display: block; }
+
+        /* ── Mobile ≤640px ── */
+        @media (max-width: 640px) {
+          .xoque-mobile {
+            display: block;
+          }
+          .xoque-laptop {
+            display: none;
+          }
+        }
+
+        /* ── Tablet 641px–1024px ── */
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .xoque-mobile {
+            display: block;
+            /* Scale the portrait viewBox to fill landscape/square tablet screens */
+            transform: scaleX(1.15);
+            transform-origin: center center;
+          }
+          .xoque-laptop {
+            display: none;
+          }
+        }
+
+        /* ── Laptop / Desktop ≥1025px — original, untouched ── */
+        @media (min-width: 1025px) {
+          .xoque-laptop {
+            display: block;
+          }
+          .xoque-mobile {
+            display: none;
+          }
+        }
+      `}</style>
+    </>
   );
 }
 
 /* ─── Types ─── */
 interface NumPlace { side: "above" | "below"; h: "left" | "right" | "center" }
 
-const CHARS: string[]    = ["x", "o", "q", "u", "e"];
-const NUMS: string[]     = ["01", "02", "03", "04", "05"];
+const CHARS: string[] = ["x", "o", "q", "u", "e"];
+const NUMS: string[] = ["01", "02", "03", "04", "05"];
 const NUM_PLACE: NumPlace[] = [
-  { side: "above", h: "right"  },
-  { side: "below", h: "left"   },
+  { side: "above", h: "right" },
+  { side: "below", h: "left" },
   { side: "above", h: "center" },
-  { side: "below", h: "left"   },
-  { side: "above", h: "right"  },
+  { side: "below", h: "left" },
+  { side: "above", h: "right" },
 ];
 
 const AVATARS = [
@@ -989,8 +1136,8 @@ function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
     ...(place.h === "right"
       ? { right: "30px" }
       : place.h === "left"
-      ? { left: "90px" }
-      : { left: "50%", transform: "translateX(-50%)" }),
+        ? { left: "90px" }
+        : { left: "50%", transform: "translateX(-50%)" }),
   };
 
   return (
@@ -999,7 +1146,7 @@ function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
       <span
         className="block leading-none font-bold select-none"
         style={{
-          fontFamily: "'Outfit', sans-serif",
+          fontFamily:  "'Arimo', sans-serif",
           fontSize: "clamp(3.8rem, 22vw, 50rem)",
           letterSpacing: "1.8rem",
           fontWeight: 700,
@@ -1025,18 +1172,18 @@ function Letter({ char, num, place, visible, tiltE, delay }: LetterProps) {
 /* ─── Hero ─── */
 export default function Hero() {
   const [visible, setVisible] = useState(false);
-  const [tiltE,   setTiltE]   = useState(false);
-  const [numsIn,  setNumsIn]  = useState(false);
-  const [subIn,   setSubIn]   = useState(false);
-  const [btnsIn,  setBtnsIn]  = useState(false);
+  const [tiltE, setTiltE] = useState(false);
+  const [numsIn, setNumsIn] = useState(false);
+  const [subIn, setSubIn] = useState(false);
+  const [btnsIn, setBtnsIn] = useState(false);
 
   useEffect(() => {
     const t: ReturnType<typeof setTimeout>[] = [];
-    t.push(setTimeout(() => setVisible(true),  280));
-    t.push(setTimeout(() => setNumsIn(true),   550));
-    t.push(setTimeout(() => setTiltE(true),    820));
-    t.push(setTimeout(() => setSubIn(true),   1050));
-    t.push(setTimeout(() => setBtnsIn(true),  1250));
+    t.push(setTimeout(() => setVisible(true), 280));
+    t.push(setTimeout(() => setNumsIn(true), 550));
+    t.push(setTimeout(() => setTiltE(true), 820));
+    t.push(setTimeout(() => setSubIn(true), 1050));
+    t.push(setTimeout(() => setBtnsIn(true), 1250));
     return () => t.forEach(clearTimeout);
   }, []);
 
@@ -1109,7 +1256,7 @@ export default function Hero() {
       >
         <p
           style={{
-            fontFamily: "'Outfit', sans-serif",
+            fontFamily: "Inter, sans-serif",
             fontSize: "clamp(0.8rem, 2vw, 1.3rem)",
             fontWeight: 800,
             letterSpacing: "0.24em",
