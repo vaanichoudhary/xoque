@@ -435,8 +435,8 @@ import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
   { label: "Home",     href: "/" },
-  { label: "Features", href: "#features" },
-  { label: "Blog",     href: "#blog" },
+  { label: "Features", href: "/features" },
+  { label: "Blog",     href: "/blog" },
 ];
 
 export default function Navbar() {
