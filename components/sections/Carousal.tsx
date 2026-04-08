@@ -248,7 +248,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className={`flex flex-col gap-9 transition-all duration-700 delay-100 ${v1 ? "opacity-100" : "opacity-0"}`}>
+        <div className={`flex flex-col gap-5 transition-all duration-700 delay-100 ${v1 ? "opacity-100" : "opacity-0"}`}>
           <PhotoMarqueeRow items={INSIGHT_ROW1} direction="left"  speed={42} />
           <PhotoMarqueeRow items={INSIGHT_ROW2} direction="right" speed={35} />
         </div>
